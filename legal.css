@@ -1,0 +1,142 @@
+:root {
+  --legal-bg: #0a0e27;
+  --legal-panel: #131a3d;
+  --legal-border: rgba(139, 95, 246, 0.32);
+  --legal-text: #c7c9d4;
+  --legal-muted: #a8acc0;
+  --legal-white: #ffffff;
+  --legal-teal: #1fe0c9;
+  --legal-purple: #8b5cf6;
+}
+
+.legal-page { padding: 96px 0; }
+.legal-content { max-width: 860px; margin: 0 auto; }
+.legal-content h1 { margin-bottom: 12px; }
+.legal-content h2 { font-size: 1.45rem; margin: 40px 0 12px; }
+.legal-content h3 { font-size: 1.08rem; margin: 24px 0 8px; }
+.legal-content p, .legal-content li { color: var(--legal-text); }
+.legal-content p { margin-bottom: 14px; }
+.legal-content ul { margin: 0 0 18px 22px; }
+.legal-content li { margin-bottom: 8px; }
+.legal-content a, .form-privacy-notice a, .cookie-banner a { color: var(--legal-teal); }
+.legal-updated { color: var(--legal-muted); margin-bottom: 30px; }
+.legal-callout {
+  margin: 26px 0;
+  padding: 18px 20px;
+  border: 1px solid var(--legal-border);
+  border-radius: 8px;
+  background: rgba(19, 26, 61, 0.72);
+}
+
+.footer-legal-nav {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin: -10px 0 22px;
+}
+.footer-legal-nav a, .footer-legal-nav button {
+  color: #9296b5;
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+.footer-legal-nav a:hover, .footer-legal-nav button:hover { color: var(--legal-teal); }
+
+.form-privacy-notice {
+  margin: 4px 0 18px;
+  padding: 12px 14px;
+  border-left: 3px solid var(--legal-teal);
+  background: rgba(31, 224, 201, 0.07);
+  color: var(--legal-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.cookie-banner {
+  position: fixed;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2000;
+  display: none;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 22px;
+  border: 1px solid var(--legal-border);
+  border-radius: 10px;
+  background: rgba(10, 14, 39, 0.98);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.55);
+  color: var(--legal-text);
+}
+.cookie-banner.is-visible { display: block; }
+.cookie-banner h2 { font-size: 1.2rem; margin: 0 0 8px; }
+.cookie-banner p { margin: 0; font-size: 0.9rem; }
+.cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.cookie-button {
+  min-height: 42px;
+  padding: 10px 17px;
+  border: 1px solid rgba(199, 201, 212, 0.36);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--legal-white);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.cookie-button:hover, .cookie-button:focus-visible { border-color: var(--legal-teal); }
+.cookie-button.primary {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--legal-teal), #14a695);
+  color: var(--legal-bg);
+}
+
+.cookie-modal[hidden] { display: none; }
+.cookie-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(4, 6, 20, 0.78);
+}
+.cookie-dialog {
+  width: min(620px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  padding: 28px;
+  border: 1px solid var(--legal-border);
+  border-radius: 10px;
+  background: var(--legal-panel);
+  color: var(--legal-text);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.62);
+}
+.cookie-dialog h2 { margin-bottom: 8px; }
+.cookie-category {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(199, 201, 212, 0.14);
+}
+.cookie-category strong { display: block; color: var(--legal-white); }
+.cookie-category span { color: var(--legal-muted); font-size: 0.84rem; }
+.cookie-category input { width: 20px; height: 20px; accent-color: var(--legal-teal); }
+.cookie-lock { color: var(--legal-teal); font-size: 0.78rem; font-weight: 700; }
+body.cookie-modal-open { overflow: hidden; }
+
+@media (max-width: 620px) {
+  .legal-page { padding: 72px 0; }
+  .cookie-banner { left: 10px; right: 10px; bottom: 10px; padding: 18px; }
+  .cookie-actions { display: grid; }
+  .cookie-button { width: 100%; }
+  .cookie-dialog { padding: 22px; }
+}
+
+.bst-embed-consent { position: absolute; inset: 0; z-index: 4; display: flex; align-items: center; justify-content: center; text-align: center; padding: 22px; background: rgba(6, 8, 21, 0.94); color: var(--legal-text); font-size: 0.86rem; }
+.bst-embed-consent p { max-width: 460px; margin: 0 auto 14px; }
+.bst-embed-consent a { color: var(--legal-teal); }
