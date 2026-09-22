@@ -1,0 +1,21 @@
+{
+  "name": "future-of-water-intelligence",
+  "version": "1.0.0",
+  "description": "End-to-end intelligent water infrastructure solutions",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "next": "^14.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/react": "^18.2.0",
+    "@types/node": "^20.10.0"
+  }
+}
