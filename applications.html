@@ -1,0 +1,392 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Applications | Water Intelligence</title>
+<style>
+:root {
+  --navy-deep: #0a0e27; --navy-mid: #131a3d; --purple-glow: #4b3f8f; --purple-bright: #8b5cf6;
+  --teal: #1fe0c9; --teal-dim: #14a695; --silver: #c7c9d4; --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(rgba(10,14,39,0.82), rgba(10,14,39,0.90)), url("assets/background.png") center center / cover fixed no-repeat, var(--navy-deep); color:var(--silver); line-height:1.6; overflow-x:hidden; }
+.container { max-width:1180px; margin:0 auto; padding:0 32px; }
+h1,h2,h3 { font-weight:700; color:var(--white); letter-spacing:-0.5px; }
+h1 { font-size:2.7rem; line-height:1.15; }
+h2 { font-size:2.1rem; margin-bottom:18px; }
+h3 { font-size:1.15rem; margin-bottom:10px; }
+.eyebrow { font-size:0.92rem; letter-spacing:3px; text-transform:uppercase; color:var(--teal); font-weight:700; margin-bottom:16px; }
+.section-lead { font-size:1.15rem; color:#a8acc0; max-width:760px; margin-bottom:36px; }
+.site-header { padding:12px 0; position:sticky; top:0; background:rgba(10,14,39,0.85); backdrop-filter:blur(12px); border-bottom:1px solid rgba(139,95,246,0.2); z-index:100; }
+.site-header .container { max-width:none; padding:0 32px; }
+.header-inner { display:grid; grid-template-columns:auto 1fr auto; align-items:center; column-gap:24px; }
+.logo { display:flex; flex-direction:column; align-items:center; cursor:pointer; text-decoration:none; }
+.logo-text { font-size:0.95rem; letter-spacing:2px; color:var(--teal); font-weight:700; text-transform:uppercase; }
+.logo-sub { font-size:0.65rem; letter-spacing:1.5px; color:var(--silver); font-weight:500; margin-top:2px; }
+.secondary-nav { justify-self:end; }
+.secondary-nav ul { display:flex; list-style:none; gap:22px; }
+.main-nav { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+.main-nav ul { display:flex; list-style:none; gap:22px; }
+.main-nav a, .secondary-nav a { text-decoration:none; color:var(--silver); font-size:1.15rem; font-weight:500; transition:color 0.2s; cursor:pointer; }
+.main-nav a:hover, .secondary-nav a:hover { color:var(--teal); }
+.main-nav a.active { color:var(--teal); font-weight:700; }
+.cta-btn { background:linear-gradient(135deg, var(--teal), var(--teal-dim)); color:var(--navy-deep); padding:10px 20px; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem; cursor:pointer; }
+.cta-btn:hover { transform:translateY(-2px); }
+
+.ex-section { padding:100px 0; }
+.ex-section-alt { padding:100px 0; background:linear-gradient(rgba(19,26,61,0.82), rgba(19,26,61,0.82)); }
+.ex-hero { position:relative; min-height:50vh; display:flex; align-items:center; }
+.ex-hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,14,39,0) 0%, rgba(10,14,39,0.6) 100%); z-index:1; }
+.ex-hero-inner { position:relative; z-index:2; padding:40px 32px; }
+.ex-h1 { font-size:min(4rem, 4vw); line-height:1.1; text-transform:uppercase; letter-spacing:-1px; font-weight:800; }
+
+.app-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:30px; margin:40px 0; }
+.app-card { border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:35px; background:rgba(255,255,255,0.02); }
+.app-card h3 { color:var(--teal); margin-bottom:12px; }
+.app-card p { font-size:0.95rem; opacity:0.85; line-height:1.8; margin-bottom:16px; }
+.app-card ul { list-style:none; }
+.app-card li { padding:6px 0; font-size:0.9rem; opacity:0.8; }
+.app-card li:before { content:"▸ "; color:var(--teal); font-weight:700; margin-right:8px; }
+
+.benefit-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin:40px 0; }
+.benefit-box { border:1px solid rgba(31,224,201,0.2); border-radius:8px; padding:24px; background:rgba(31,224,201,0.05); text-align:center; }
+.benefit-box h4 { color:var(--teal); font-weight:700; margin-bottom:10px; }
+.benefit-box p { font-size:0.9rem; opacity:0.8; }
+
+.site-footer { background:rgba(19,26,61,0.95); border-top:1px solid rgba(139,95,246,0.2); padding:60px 0 30px; }
+.footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-bottom:40px; }
+.footer-section h4 { font-size:0.95rem; font-weight:700; color:var(--white); margin-bottom:14px; }
+.footer-section ul { list-style:none; }
+.footer-section a { color:var(--silver); text-decoration:none; font-size:0.9rem; display:block; margin-bottom:10px; }
+.footer-section a:hover { color:var(--teal); }
+.footer-bottom { border-top:1px solid rgba(139,95,246,0.15); padding-top:30px; display:flex; justify-content:space-between; }
+.footer-copy { font-size:0.85rem; opacity:0.6; }
+.black-silver-link { color:var(--teal); font-size:0.8rem; text-decoration:none; font-weight:700; display:block; margin-top:20px; }
+
+@media (max-width:768px) {
+  .app-grid, .benefit-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-text">Water Intelligence</div>
+        <div class="logo-sub">by Black Silver</div>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="applications.html" class="active">Applications</a></li>
+          <li><a href="specifications.html">Specifications</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+        </ul>
+      </nav>
+      <div class="secondary-nav">
+        <ul>
+          <li><a href="contact.html" class="cta-btn">Get Assessment</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="ex-hero">
+    <div class="ex-hero-overlay"></div>
+    <div class="ex-hero-inner container">
+      <div class="eyebrow">Where NBOT Makes an Impact</div>
+      <h1 class="ex-h1">Applications</h1>
+      <p class="section-lead" style="margin-top:16px;">NBOT technology is deployed across municipal, industrial, and specialized water treatment scenarios—from point-of-use installations to large-scale infrastructure.</p>
+    </div>
+  </section>
+
+  <!-- Municipal & Wastewater -->
+  <section class="ex-section">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Municipal & Wastewater Treatment</h2>
+        <p class="section-lead">Advanced purification for public water systems and treatment facilities.</p>
+      </div>
+
+      <div class="app-grid">
+        <div class="app-card">
+          <h3>Municipal Water Treatment</h3>
+          <p>NBOT provides advanced purification for municipal drinking water systems, eliminating PFAS, pharmaceuticals, microplastics, and microbial contaminants—all without hazardous chemical residuals.</p>
+          <ul>
+            <li>PFAS & forever chemicals removal</li>
+            <li>Bacterial & pathogen elimination</li>
+            <li>Improved water taste & odor</li>
+            <li>Compliance with emerging regulations</li>
+            <li>Reduced chemical operating costs</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h3>Wastewater Treatment</h3>
+          <p>Advanced treatment of industrial wastewater, sewage, and reclaimed water—achieving compliance standards while reducing disposal costs.</p>
+          <ul>
+            <li>Organic contaminant destruction</li>
+            <li>Nutrient reduction (N, P)</li>
+            <li>Pretreatment for advanced processes</li>
+            <li>Odor & biofilm control</li>
+            <li>Reuse water quality enhancement</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="benefit-grid">
+        <div class="benefit-box">
+          <h4>Regulatory Compliance</h4>
+          <p>Meet emerging PFAS limits and other advanced contaminant standards.</p>
+        </div>
+        <div class="benefit-box">
+          <h4>Cost Reduction</h4>
+          <p>Lower chemical consumption and waste disposal costs.</p>
+        </div>
+        <div class="benefit-box">
+          <h4>Infrastructure Protection</h4>
+          <p>Reduce corrosion and pipe degradation from aggressive chemicals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industrial & Data Centers -->
+  <section class="ex-section-alt">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Industrial & Critical Infrastructure</h2>
+        <p class="section-lead">Specialized water treatment for demanding industrial environments.</p>
+      </div>
+
+      <div class="app-grid">
+        <div class="app-card">
+          <h3>Data Centers & Computing</h3>
+          <p>Ultra-pure water for cooling systems, process water, and recirculation—ensuring uptime and efficiency while maintaining water quality standards.</p>
+          <ul>
+            <li>High-purity cooling water</li>
+            <li>Biofilm & scale prevention</li>
+            <li>Reduced maintenance downtime</li>
+            <li>Sustainable water reuse</li>
+            <li>Modular scalability</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h3>Food & Beverage Processing</h3>
+          <p>Advanced purification for production, cleaning, and quality assurance—meeting food safety standards while reducing chemical inputs.</p>
+          <ul>
+            <li>Microbial contamination control</li>
+            <li>Chemical-free processing water</li>
+            <li>Product quality assurance</li>
+            <li>Compliance with food standards</li>
+            <li>Waste stream reduction</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h3>Manufacturing & Industrial Facilities</h3>
+          <p>Process water treatment, cooling systems, and industrial wastewater—optimized for heavy-duty operations.</p>
+          <ul>
+            <li>Process water purification</li>
+            <li>Cooling system maintenance</li>
+            <li>Contaminant pretreatment</li>
+            <li>Operating cost reduction</li>
+            <li>System reliability</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h3>Algae & HAB Remediation</h3>
+          <p>Specialized treatment for harmful algal bloom elimination and prevention—protecting water bodies and recreation areas.</p>
+          <ul>
+            <li>Algae bloom elimination</li>
+            <li>Nutrient control (N, P)</li>
+            <li>Ecosystem restoration</li>
+            <li>Large-scale deployment</li>
+            <li>Environmental compliance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Healthcare & Specialty -->
+  <section class="ex-section">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Healthcare & Specialty Applications</h2>
+        <p class="section-lead">Precision water treatment for healthcare, education, and specialized uses.</p>
+      </div>
+
+      <div class="app-grid">
+        <div class="app-card">
+          <h3>Healthcare Facilities</h3>
+          <p>Advanced water treatment for hospitals and medical facilities—ensuring purity for clinical operations and reducing infection risk.</p>
+          <ul>
+            <li>Clinical water quality</li>
+            <li>Pathogen elimination</li>
+            <li>Pharmaceutical residue removal</li>
+            <li>Infection prevention</li>
+            <li>Regulatory compliance</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h3>Campus & Institutional Water</h3>
+          <p>Water treatment for universities, schools, and institutions—protecting students and staff with advanced purification.</p>
+          <ul>
+            <li>Microbe & pathogen control</li>
+            <li>PFAS & chemical removal</li>
+            <li>Sustainable campus operations</li>
+            <li>Modular installation</li>
+            <li>Cost-effective maintenance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Real Estate & Hospitality -->
+  <section class="ex-section-alt">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Real Estate & Hospitality</h2>
+        <p class="section-lead">Premium water quality for residential, commercial, and hospitality properties.</p>
+      </div>
+
+      <div class="app-grid">
+        <div class="app-card">
+          <h3>Commercial Real Estate</h3>
+          <p>Advanced water treatment for office buildings, mixed-use developments, and commercial properties—ensuring tenant satisfaction and operational efficiency.</p>
+          <ul>
+            <li>Tenant health & satisfaction</li>
+            <li>Equipment longevity</li>
+            <li>Reduced maintenance costs</li>
+            <li>Sustainability credentials</li>
+            <li>Property value enhancement</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h3>Hotels & Hospitality</h3>
+          <p>Premium water treatment for luxury and standard hospitality operations—enhancing guest experience and reducing operational costs.</p>
+          <ul>
+            <li>Superior guest experience</li>
+            <li>Reduced water odor & color</li>
+            <li>Equipment longevity</li>
+            <li>Sustainability marketing</li>
+            <li>Cost efficiency</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h3>Residential Communities</h3>
+          <p>Advanced water treatment for residential developments, condos, and HOAs—providing superior water quality and value.</p>
+          <ul>
+            <li>Resident health protection</li>
+            <li>PFAS & contaminant removal</li>
+            <li>Premium living amenity</li>
+            <li>Community trust</li>
+            <li>Long-term value</li>
+          </ul>
+        </div>
+        <div class="app-card">
+          <h3>Agricultural & Irrigation</h3>
+          <p>Water treatment for crop irrigation and agricultural operations—protecting crops and optimizing water resource management.</p>
+          <ul>
+            <li>Crop protection</li>
+            <li>Pesticide & chemical control</li>
+            <li>Water resource efficiency</li>
+            <li>Yield optimization</li>
+            <li>Sustainable farming</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Universal Benefits -->
+  <section class="ex-section">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Universal Benefits Across All Applications</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:40px;">
+        <div>
+          <h3 style="color:var(--teal); margin-bottom:20px;">Operational</h3>
+          <ul style="list-style:none;">
+            <li style="padding:8px 0;">✓ Modular, scalable deployment</li>
+            <li style="padding:8px 0;">✓ Compact 4×4 footprint</li>
+            <li style="padding:8px 0;">✓ Drop-in system integration</li>
+            <li style="padding:8px 0;">✓ 24/7 remote monitoring</li>
+            <li style="padding:8px 0;">✓ Predictive maintenance alerts</li>
+            <li style="padding:8px 0;">✓ Local workforce enablement</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color:var(--teal); margin-bottom:20px;">Financial & Environmental</h3>
+          <ul style="list-style:none;">
+            <li style="padding:8px 0;">✓ Lower operating costs</li>
+            <li style="padding:8px 0;">✓ Reduced chemical consumption</li>
+            <li style="padding:8px 0;">✓ Minimal waste streams</li>
+            <li style="padding:8px 0;">✓ Energy-efficient operation</li>
+            <li style="padding:8px 0;">✓ Environmental compliance</li>
+            <li style="padding:8px 0;">✓ Sustainability credentials</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="ex-section" style="text-align:center; background:linear-gradient(rgba(19,26,61,0.82), rgba(19,26,61,0.82));">
+    <div class="container">
+      <h2 style="margin-bottom:20px;">Find Your Application</h2>
+      <p class="section-lead">Every water challenge is unique. Get a comprehensive assessment tailored to your specific needs.</p>
+      <a href="contact.html" class="cta-btn" style="display:inline-block; margin-top:24px; font-size:1rem; padding:14px 28px;">Request Assessment</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Technology</h4>
+        <ul>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="specifications.html">Specifications</a></li>
+          <li><a href="applications.html">Applications</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy</a></li>
+          <li><a href="terms-of-use.html">Terms</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="#">White Papers</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <p style="font-size:0.9rem; color:var(--silver); line-height:1.6;">Water Intelligence is part of Black Silver Technologies—delivering intelligent infrastructure solutions for the modern world.</p>
+        <a href="https://blacksilver.holdings" class="black-silver-link">← Back to Black Silver</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Black Silver Technologies. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="legal.js"></script>
+</body>
+</html>

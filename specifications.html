@@ -1,0 +1,427 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Specifications | Water Intelligence</title>
+<style>
+:root {
+  --navy-deep: #0a0e27; --navy-mid: #131a3d; --purple-glow: #4b3f8f; --purple-bright: #8b5cf6;
+  --teal: #1fe0c9; --teal-dim: #14a695; --silver: #c7c9d4; --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(rgba(10,14,39,0.82), rgba(10,14,39,0.90)), url("assets/background.png") center center / cover fixed no-repeat, var(--navy-deep); color:var(--silver); line-height:1.6; overflow-x:hidden; }
+.container { max-width:1180px; margin:0 auto; padding:0 32px; }
+h1,h2,h3 { font-weight:700; color:var(--white); letter-spacing:-0.5px; }
+h1 { font-size:2.7rem; line-height:1.15; }
+h2 { font-size:2.1rem; margin-bottom:18px; }
+h3 { font-size:1.15rem; }
+.eyebrow { font-size:0.92rem; letter-spacing:3px; text-transform:uppercase; color:var(--teal); font-weight:700; margin-bottom:16px; }
+.section-lead { font-size:1.15rem; color:#a8acc0; max-width:760px; margin-bottom:36px; }
+.site-header { padding:12px 0; position:sticky; top:0; background:rgba(10,14,39,0.85); backdrop-filter:blur(12px); border-bottom:1px solid rgba(139,95,246,0.2); z-index:100; }
+.site-header .container { max-width:none; padding:0 32px; }
+.header-inner { display:grid; grid-template-columns:auto 1fr auto; align-items:center; column-gap:24px; }
+.logo { display:flex; flex-direction:column; align-items:center; cursor:pointer; text-decoration:none; }
+.logo-text { font-size:0.95rem; letter-spacing:2px; color:var(--teal); font-weight:700; text-transform:uppercase; }
+.logo-sub { font-size:0.65rem; letter-spacing:1.5px; color:var(--silver); font-weight:500; margin-top:2px; }
+.secondary-nav { justify-self:end; }
+.secondary-nav ul { display:flex; list-style:none; gap:22px; }
+.main-nav { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+.main-nav ul { display:flex; list-style:none; gap:22px; }
+.main-nav a, .secondary-nav a { text-decoration:none; color:var(--silver); font-size:1.15rem; font-weight:500; transition:color 0.2s; }
+.main-nav a:hover, .secondary-nav a:hover { color:var(--teal); }
+.main-nav a.active { color:var(--teal); font-weight:700; }
+.cta-btn { background:linear-gradient(135deg, var(--teal), var(--teal-dim)); color:var(--navy-deep); padding:10px 20px; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem; cursor:pointer; }
+
+.ex-section { padding:100px 0; }
+.ex-section-alt { padding:100px 0; background:linear-gradient(rgba(19,26,61,0.82), rgba(19,26,61,0.82)); }
+.ex-hero { position:relative; min-height:50vh; display:flex; align-items:center; }
+.ex-hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,14,39,0) 0%, rgba(10,14,39,0.6) 100%); z-index:1; }
+.ex-hero-inner { position:relative; z-index:2; padding:40px 32px; }
+.ex-h1 { font-size:min(4rem, 4vw); line-height:1.1; text-transform:uppercase; letter-spacing:-1px; font-weight:800; }
+
+.spec-table { width:100%; border-collapse:collapse; margin:30px 0; }
+.spec-table th { background:rgba(31,224,201,0.1); color:var(--teal); padding:14px; text-align:left; font-weight:700; border-bottom:2px solid rgba(31,224,201,0.3); }
+.spec-table td { padding:14px; border-bottom:1px solid rgba(139,95,246,0.2); }
+.spec-table tr:hover { background:rgba(31,224,201,0.05); }
+
+.unit-card { border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:30px; background:rgba(255,255,255,0.02); margin-bottom:30px; }
+.unit-name { font-size:1.3rem; font-weight:700; color:var(--teal); margin-bottom:16px; }
+.unit-desc { font-size:0.95rem; opacity:0.85; margin-bottom:20px; }
+.unit-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.spec-item { }
+.spec-label { font-size:0.85rem; color:var(--teal); font-weight:700; }
+.spec-value { font-size:1.1rem; color:var(--white); font-weight:600; }
+
+.feature-card { border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:30px; background:rgba(255,255,255,0.02); }
+.feature-card h3 { color:var(--teal); margin-bottom:12px; }
+.feature-card p { font-size:0.95rem; opacity:0.85; }
+.feature-card ul { list-style:none; margin-top:16px; }
+.feature-card li { padding:6px 0; font-size:0.9rem; opacity:0.8; }
+.feature-card li:before { content:"✓ "; color:var(--teal); font-weight:700; margin-right:8px; }
+
+.site-footer { background:rgba(19,26,61,0.95); border-top:1px solid rgba(139,95,246,0.2); padding:60px 0 30px; }
+.footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-bottom:40px; }
+.footer-section h4 { font-size:0.95rem; font-weight:700; color:var(--white); margin-bottom:14px; }
+.footer-section ul { list-style:none; }
+.footer-section a { color:var(--silver); text-decoration:none; font-size:0.9rem; display:block; margin-bottom:10px; }
+.footer-section a:hover { color:var(--teal); }
+.footer-bottom { border-top:1px solid rgba(139,95,246,0.15); padding-top:30px; display:flex; justify-content:space-between; }
+.black-silver-link { color:var(--teal); font-size:0.8rem; text-decoration:none; font-weight:700; display:block; margin-top:20px; }
+
+@media (max-width:768px) {
+  .unit-grid { grid-template-columns:1fr; }
+  .footer-grid { grid-template-columns:repeat(2,1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-text">Water Intelligence</div>
+        <div class="logo-sub">by Black Silver</div>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="applications.html">Applications</a></li>
+          <li><a href="specifications.html" class="active">Specifications</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+        </ul>
+      </nav>
+      <div class="secondary-nav">
+        <ul>
+          <li><a href="contact.html" class="cta-btn">Get Assessment</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="ex-hero">
+    <div class="ex-hero-overlay"></div>
+    <div class="ex-hero-inner container">
+      <div class="eyebrow">Technical Specifications</div>
+      <h1 class="ex-h1">NBOT Equipment Specs</h1>
+      <p class="section-lead" style="margin-top:16px;">Detailed specifications for NBOT purification systems, including modular configurations, capacity ratings, and technical parameters.</p>
+    </div>
+  </section>
+
+  <!-- Equipment Models -->
+  <section class="ex-section">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Available NBOT Models</h2>
+        <p class="section-lead">Two modular configurations designed for scalability—from compact installations to large-scale industrial operations.</p>
+      </div>
+
+      <div class="unit-card">
+        <div class="unit-name">NBOT 7.5 HP-60</div>
+        <div class="unit-desc">Compact modular system designed for smaller facilities, pilot installations, and point-of-use applications.</div>
+        <div class="unit-grid">
+          <div class="spec-item">
+            <div class="spec-label">Unit Size</div>
+            <div class="spec-value">7.5 HP</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Maximum Flow Rate</div>
+            <div class="spec-value">60 gal/min</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Power Requirements</div>
+            <div class="spec-value">208V-480V</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Maximum Power</div>
+            <div class="spec-value">7.5 kW</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Footprint</div>
+            <div class="spec-value">4×4 skid</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Configuration</div>
+            <div class="spec-value">Single pump/motor</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="unit-card">
+        <div class="unit-name">NBOT 15 HP-300 Trailer Unit</div>
+        <div class="unit-desc">Full-scale modular system for municipal, industrial, and large-scale wastewater treatment—deployed as a complete, mobile unit.</div>
+        <div class="unit-grid">
+          <div class="spec-item">
+            <div class="spec-label">Unit Size</div>
+            <div class="spec-value">15 HP</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Maximum Flow Rate</div>
+            <div class="spec-value">18,000 gal/hr (single-pass)</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Power Requirements</div>
+            <div class="spec-value">208V-480V</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Maximum Power</div>
+            <div class="spec-value">18 kW</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Footprint</div>
+            <div class="spec-value">2 skids (4×4 each)</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-label">Configuration</div>
+            <div class="spec-value">Pump + Motor + Generator</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Parameters -->
+  <section class="ex-section-alt">
+    <div class="container">
+      <h2 style="margin-bottom:40px;">Technical Parameters</h2>
+
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>NBOT 7.5 HP-60</th>
+            <th>NBOT 15 HP-300</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Maximum Water Flow Rate</strong></td>
+            <td>60 gallons/minute</td>
+            <td>18,000 gallons/hour (single-pass)</td>
+          </tr>
+          <tr>
+            <td><strong>Operating Environment</strong></td>
+            <td colspan="2">&lt; 75% humidity; AC cooling required for trailer unit</td>
+          </tr>
+          <tr>
+            <td><strong>Noise Level</strong></td>
+            <td colspan="2">60-75 decibels</td>
+          </tr>
+          <tr>
+            <td><strong>Oxygen Concentrator Flow</strong></td>
+            <td colspan="2">2.0-6.0 liters/minute @ 95% (0.07-0.21 SCFM)</td>
+          </tr>
+          <tr>
+            <td><strong>Ozone Generator Capacity</strong></td>
+            <td colspan="2">300 g/hr.</td>
+          </tr>
+          <tr>
+            <td><strong>Weight (Pump)</strong></td>
+            <td>132 kg (290 lbs.)</td>
+            <td>Distributed across 2 skids</td>
+          </tr>
+          <tr>
+            <td><strong>Weight (Motor/Generator)</strong></td>
+            <td>123 kg (270 lbs.)</td>
+            <td>Distributed across 2 skids</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Contamination Removal Capabilities -->
+  <section class="ex-section">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Contamination Removal Capabilities</h2>
+        <p class="section-lead">Comprehensive elimination of organic, chemical, and heavy metal contaminants.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:30px;">
+        <div class="feature-card">
+          <h3>Organic Contaminants Eliminated</h3>
+          <ul>
+            <li>Bacteria & pathogens (all types)</li>
+            <li>Viruses & viral organisms</li>
+            <li>Sewage & fecal matter</li>
+            <li>Algae & harmful algal blooms (HABs)</li>
+            <li>Biofilm & slime layers</li>
+            <li>All organic matter</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Chemical Contaminants Treated</h3>
+          <ul>
+            <li>PFAS (per- & polyfluoroalkyl substances)</li>
+            <li>Pharmaceuticals & medication residues</li>
+            <li>Pesticides & herbicides</li>
+            <li>Volatile organic compounds (VOCs)</li>
+            <li>Microplastics & nano-contaminants</li>
+            <li>Industrial chemical residues</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Heavy Metals & Nutrients</h3>
+          <ul>
+            <li>Heavy metals (arsenic, lead, mercury)</li>
+            <li>PFAS molecules & related compounds</li>
+            <li>Nitrogen reduction (N removal)</li>
+            <li>Phosphorus reduction (P removal)</li>
+            <li>Industrial waste contaminants</li>
+            <li>Water quality optimization</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Treatment Characteristics</h3>
+          <ul>
+            <li>Only residual: dissolved oxygen</li>
+            <li>No chemical byproducts</li>
+            <li>No secondary waste streams</li>
+            <li>No disinfection byproducts</li>
+            <li>Continued treatment (≈20 days post-application)</li>
+            <li>Prevents bacterial resistance buildup</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:rgba(31,224,201,0.1); border:1px solid rgba(31,224,201,0.3); border-radius:10px; padding:30px; margin-top:40px; text-align:center;">
+        <h3 style="color:var(--teal); margin-bottom:12px;">Oxidation Power Comparison</h3>
+        <p style="font-size:1.1rem; color:var(--white); margin-bottom:8px;">NBOT is <strong>2,000× stronger than ozone</strong></p>
+        <p style="font-size:1.1rem; color:var(--white);">NBOT is <strong>180× stronger than UV light</strong></p>
+        <p style="font-size:0.9rem; opacity:0.8; margin-top:16px;">In terms of oxidation potential and overall treatment efficacy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operational Characteristics -->
+  <section class="ex-section-alt">
+    <div class="container">
+      <h2 style="margin-bottom:40px;">Operational Characteristics</h2>
+
+      <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:30px;">
+        <div class="feature-card">
+          <h3>Modular Design Benefits</h3>
+          <ul>
+            <li>Scalable from point-of-use to industrial</li>
+            <li>Compact 4×4 footprint configuration</li>
+            <li>Quick, modular deployment</li>
+            <li>Minimal civil infrastructure required</li>
+            <li>Drop-in system integration</li>
+            <li>Growth-based configuration</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Integration & Installation</h3>
+          <ul>
+            <li>Compatible with existing tank systems</li>
+            <li>Simple connection architecture</li>
+            <li>Minimal site preparation</li>
+            <li>Quick commissioning timeline</li>
+            <li>Local workforce training support</li>
+            <li>Community operation enablement</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Intelligent Monitoring</h3>
+          <ul>
+            <li>24/7 real-time performance monitoring</li>
+            <li>Cloud-based analytics dashboard</li>
+            <li>Remote system diagnostics</li>
+            <li>AI-driven predictive maintenance</li>
+            <li>Automated alert & response workflows</li>
+            <li>Continuous optimization algorithms</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Maintenance & Support</h3>
+          <ul>
+            <li>Proactive failure prevention</li>
+            <li>Automated maintenance scheduling</li>
+            <li>Expert remote support (24/7)</li>
+            <li>Local technician enablement</li>
+            <li>Spare parts availability</li>
+            <li>Long asset lifecycle management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configuration Options -->
+  <section class="ex-section">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:40px;">Customization & Configuration</h2>
+      <p class="section-lead" style="text-align:center;">NBOT systems are highly configurable to meet specific application requirements:</p>
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:30px;">
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700;">Flow Rate Sizing</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">Configure for specific flow requirements from small point-of-use to 18,000 gal/hr industrial scale.</p>
+        </div>
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700;">Application-Specific Tuning</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">Optimize ozone generation, contact time, and oxidation intensity for specific contaminants and water types.</p>
+        </div>
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700;">Multi-Unit Deployment</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">Combine multiple NBOT units for enhanced capacity, redundancy, and system resilience.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="ex-section" style="text-align:center; background:linear-gradient(rgba(19,26,61,0.82), rgba(19,26,61,0.82));">
+    <div class="container">
+      <h2 style="margin-bottom:20px;">Need Custom Specifications?</h2>
+      <p class="section-lead">Contact our technical team for custom configurations, detailed engineering specifications, and deployment planning.</p>
+      <a href="contact.html" class="cta-btn" style="display:inline-block; margin-top:24px; font-size:1rem; padding:14px 28px;">Request Custom Quote</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Technology</h4>
+        <ul>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="specifications.html">Specifications</a></li>
+          <li><a href="applications.html">Applications</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy</a></li>
+          <li><a href="terms-of-use.html">Terms</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="#">White Papers</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <p style="font-size:0.9rem; color:var(--silver); line-height:1.6;">Water Intelligence is part of Black Silver Technologies—delivering intelligent infrastructure solutions for the modern world.</p>
+        <a href="https://blacksilver.holdings" class="black-silver-link">← Back to Black Silver</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Black Silver Technologies. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="legal.js"></script>
+</body>
+</html>

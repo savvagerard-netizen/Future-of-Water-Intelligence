@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact & Assessment | Water Intelligence</title>
+<style>
+:root {
+  --navy-deep: #0a0e27; --navy-mid: #131a3d; --purple-glow: #4b3f8f; --purple-bright: #8b5cf6;
+  --teal: #1fe0c9; --teal-dim: #14a695; --silver: #c7c9d4; --white: #ffffff;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(rgba(10,14,39,0.82), rgba(10,14,39,0.90)), url("assets/background.png") center center / cover fixed no-repeat, var(--navy-deep); color:var(--silver); line-height:1.6; overflow-x:hidden; }
+.container { max-width:1180px; margin:0 auto; padding:0 32px; }
+h1,h2,h3 { font-weight:700; color:var(--white); letter-spacing:-0.5px; }
+h1 { font-size:2.7rem; line-height:1.15; }
+h2 { font-size:2.1rem; margin-bottom:18px; }
+h3 { font-size:1.15rem; }
+.eyebrow { font-size:0.92rem; letter-spacing:3px; text-transform:uppercase; color:var(--teal); font-weight:700; margin-bottom:16px; }
+.section-lead { font-size:1.15rem; color:#a8acc0; max-width:760px; margin-bottom:36px; }
+.site-header { padding:12px 0; position:sticky; top:0; background:rgba(10,14,39,0.85); backdrop-filter:blur(12px); border-bottom:1px solid rgba(139,95,246,0.2); z-index:100; }
+.site-header .container { max-width:none; padding:0 32px; }
+.header-inner { display:grid; grid-template-columns:auto 1fr auto; align-items:center; column-gap:24px; }
+.logo { display:flex; flex-direction:column; align-items:center; cursor:pointer; text-decoration:none; }
+.logo-text { font-size:0.95rem; letter-spacing:2px; color:var(--teal); font-weight:700; text-transform:uppercase; }
+.logo-sub { font-size:0.65rem; letter-spacing:1.5px; color:var(--silver); font-weight:500; margin-top:2px; }
+.secondary-nav { justify-self:end; }
+.secondary-nav ul { display:flex; list-style:none; gap:22px; }
+.main-nav { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
+.main-nav ul { display:flex; list-style:none; gap:22px; }
+.main-nav a, .secondary-nav a { text-decoration:none; color:var(--silver); font-size:1.15rem; font-weight:500; transition:color 0.2s; }
+.main-nav a:hover, .secondary-nav a:hover { color:var(--teal); }
+.main-nav a.active { color:var(--teal); font-weight:700; }
+.cta-btn { background:linear-gradient(135deg, var(--teal), var(--teal-dim)); color:var(--navy-deep); padding:10px 20px; border-radius:6px; font-weight:700; text-decoration:none; font-size:0.95rem; cursor:pointer; border:none; }
+.cta-btn:hover { transform:translateY(-2px); }
+
+.ex-section { padding:100px 0; }
+.ex-section-alt { padding:100px 0; background:linear-gradient(rgba(19,26,61,0.82), rgba(19,26,61,0.82)); }
+.ex-hero { position:relative; min-height:50vh; display:flex; align-items:center; }
+.ex-hero-overlay { position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,14,39,0) 0%, rgba(10,14,39,0.6) 100%); z-index:1; }
+.ex-hero-inner { position:relative; z-index:2; padding:40px 32px; }
+.ex-h1 { font-size:min(4rem, 4vw); line-height:1.1; text-transform:uppercase; letter-spacing:-1px; font-weight:800; }
+
+.form-container { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin:60px 0; align-items:start; }
+.form-section h3 { font-size:1.4rem; color:var(--teal); margin-bottom:20px; }
+.form-section p { font-size:0.95rem; opacity:0.8; margin-bottom:20px; }
+
+form { }
+.form-group { margin-bottom:24px; }
+label { display:block; font-size:0.9rem; font-weight:700; color:var(--white); margin-bottom:8px; }
+input, textarea, select { width:100%; padding:12px 14px; background:rgba(255,255,255,0.05); border:1px solid rgba(139,95,246,0.25); border-radius:6px; color:var(--white); font-family:inherit; font-size:0.95rem; transition:border-color 0.2s; }
+input:focus, textarea:focus, select:focus { outline:none; border-color:var(--teal); background:rgba(255,255,255,0.08); }
+textarea { resize:vertical; min-height:120px; }
+button { background:linear-gradient(135deg, var(--teal), var(--teal-dim)); color:var(--navy-deep); padding:14px 28px; border:none; border-radius:6px; font-weight:700; font-size:1rem; cursor:pointer; transition:transform 0.2s; width:100%; }
+button:hover { transform:translateY(-2px); }
+
+.contact-info { }
+.info-item { margin-bottom:30px; }
+.info-label { font-size:0.85rem; color:var(--teal); font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.info-content { font-size:1.05rem; color:var(--white); }
+.info-content a { color:var(--teal); text-decoration:none; }
+.info-content a:hover { color:var(--white); }
+
+.benefit-list { list-style:none; margin-top:30px; padding-top:30px; border-top:1px solid rgba(139,95,246,0.2); }
+.benefit-list li { padding:8px 0; font-size:0.95rem; opacity:0.85; }
+.benefit-list li:before { content:"✓ "; color:var(--teal); font-weight:700; margin-right:8px; }
+
+.site-footer { background:rgba(19,26,61,0.95); border-top:1px solid rgba(139,95,246,0.2); padding:60px 0 30px; }
+.footer-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:40px; margin-bottom:40px; }
+.footer-section h4 { font-size:0.95rem; font-weight:700; color:var(--white); margin-bottom:14px; }
+.footer-section ul { list-style:none; }
+.footer-section a { color:var(--silver); text-decoration:none; font-size:0.9rem; display:block; margin-bottom:10px; }
+.footer-section a:hover { color:var(--teal); }
+.footer-bottom { border-top:1px solid rgba(139,95,246,0.15); padding-top:30px; display:flex; justify-content:space-between; }
+.black-silver-link { color:var(--teal); font-size:0.8rem; text-decoration:none; font-weight:700; display:block; margin-top:20px; }
+
+@media (max-width:768px) {
+  .form-container { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-text">Water Intelligence</div>
+        <div class="logo-sub">by Black Silver</div>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="applications.html">Applications</a></li>
+          <li><a href="specifications.html">Specifications</a></li>
+          <li><a href="case-studies.html">Case Studies</a></li>
+        </ul>
+      </nav>
+      <div class="secondary-nav">
+        <ul>
+          <li><a href="contact.html" class="cta-btn">Get Assessment</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="ex-hero">
+    <div class="ex-hero-overlay"></div>
+    <div class="ex-hero-inner container">
+      <div class="eyebrow">Get In Touch</div>
+      <h1 class="ex-h1">Contact & Assessment</h1>
+      <p class="section-lead" style="margin-top:16px;">Connect with our team to discuss your water treatment challenges, explore NBOT applications, or request a comprehensive assessment.</p>
+    </div>
+  </section>
+
+  <!-- Contact Forms -->
+  <section class="ex-section">
+    <div class="container">
+      <div class="form-container">
+        <!-- Assessment Request Form -->
+        <div class="form-section">
+          <h3>Request Assessment</h3>
+          <p>Tell us about your water treatment needs. Our team will provide a tailored assessment and implementation recommendations.</p>
+
+          <form id="assessment-form">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label>Company / Organization *</label>
+              <input type="text" name="company" required>
+            </div>
+
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" name="phone">
+            </div>
+
+            <div class="form-group">
+              <label>Application Type *</label>
+              <select name="application" required>
+                <option value="">Select an application...</option>
+                <option value="municipal">Municipal Water Treatment</option>
+                <option value="wastewater">Wastewater Treatment</option>
+                <option value="industrial">Industrial / Manufacturing</option>
+                <option value="data-center">Data Center / Critical Infrastructure</option>
+                <option value="healthcare">Healthcare Facility</option>
+                <option value="food-beverage">Food & Beverage Processing</option>
+                <option value="real-estate">Real Estate / Commercial</option>
+                <option value="algae">Algae & HAB Remediation</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Current Water Challenges *</label>
+              <textarea name="challenges" required placeholder="Describe your water treatment challenges, contamination concerns, or current system limitations..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Estimated Flow Rate (gal/hr or gal/min)</label>
+              <input type="text" name="flow-rate" placeholder="e.g., 5,000 gal/hr">
+            </div>
+
+            <button type="submit">Request Assessment</button>
+          </form>
+        </div>
+
+        <!-- Contact Info & Direct Contact -->
+        <div class="form-section">
+          <h3>Get in Touch</h3>
+          <p>Prefer to discuss your needs directly? Reach out to our team via phone or email.</p>
+
+          <div class="contact-info">
+            <div class="info-item">
+              <div class="info-label">Phone</div>
+              <div class="info-content"><a href="tel:+1-XXX-XXX-XXXX">+1 (XXX) XXX-XXXX</a></div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-label">Email</div>
+              <div class="info-content"><a href="mailto:info@water-intelligence.blacksilver.holdings">info@water-intelligence.blacksilver.holdings</a></div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-label">Address</div>
+              <div class="info-content">Black Silver Technologies<br>Innovation District<br>United States</div>
+            </div>
+          </div>
+
+          <div class="benefit-list">
+            <li>Expert consultation on water treatment solutions</li>
+            <li>Customized system recommendations</li>
+            <li>Technical specifications & ROI analysis</li>
+            <li>Implementation timeline & support</li>
+            <li>24/7 customer support after deployment</li>
+          </div>
+
+          <div style="background:rgba(31,224,201,0.1); border:1px solid rgba(31,224,201,0.3); border-radius:10px; padding:20px; margin-top:30px;">
+            <p style="font-size:0.9rem; opacity:0.85;">
+              <strong style="color:var(--teal);">Response Time:</strong> We typically respond to assessment requests within 24 hours. For urgent inquiries, please call our team directly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Water Intelligence -->
+  <section class="ex-section-alt">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Why Partner With Water Intelligence</h2>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700; font-size:1.05rem;">Proven Technology</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">NBOT is recognized by NOAA and validated through real-world deployments across municipal, industrial, and environmental applications.</p>
+        </div>
+
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700; font-size:1.05rem;">End-to-End Support</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">From initial assessment through deployment, training, monitoring, and continuous optimization—we manage your complete water lifecycle.</p>
+        </div>
+
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700; font-size:1.05rem;">Measurable Results</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">Rapid contaminant elimination, regulatory compliance, cost reduction, and environmental impact—all with transparent, real-time reporting.</p>
+        </div>
+
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700; font-size:1.05rem;">Scalable Deployment</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">Modular NBOT systems scale from point-of-use to industrial—one platform for any application size and geography.</p>
+        </div>
+
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700; font-size:1.05rem;">No Secondary Contamination</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">Oxygen-only byproducts mean no chemical residuals, no disinfection byproducts, no waste disposal concerns.</p>
+        </div>
+
+        <div style="border:1px solid rgba(139,95,246,0.25); border-radius:10px; padding:24px; background:rgba(255,255,255,0.02);">
+          <h4 style="color:var(--teal); margin-bottom:12px; font-weight:700; font-size:1.05rem;">Global Expertise</h4>
+          <p style="font-size:0.9rem; opacity:0.85;">Part of Black Silver Technologies—delivering intelligent infrastructure solutions across borders with 24/7 support.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="ex-section">
+    <div class="container">
+      <div style="text-align:center; margin-bottom:40px;">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+
+      <div style="max-width:800px; margin:0 auto;">
+        <div style="margin-bottom:30px; border-bottom:1px solid rgba(139,95,246,0.2); padding-bottom:20px;">
+          <h4 style="color:var(--teal); margin-bottom:12px;">How long does an assessment take?</h4>
+          <p style="font-size:0.95rem; opacity:0.85;">Comprehensive assessments typically take 2-4 weeks, including site analysis, water quality testing, and customized recommendations.</p>
+        </div>
+
+        <div style="margin-bottom:30px; border-bottom:1px solid rgba(139,95,246,0.2); padding-bottom:20px;">
+          <h4 style="color:var(--teal); margin-bottom:12px;">How quickly can NBOT be deployed?</h4>
+          <p style="font-size:0.95rem; opacity:0.85;">Modular design enables rapid deployment. Installation typically completes in 2-8 weeks depending on site preparation and integration complexity.</p>
+        </div>
+
+        <div style="margin-bottom:30px; border-bottom:1px solid rgba(139,95,246,0.2); padding-bottom:20px;">
+          <h4 style="color:var(--teal); margin-bottom:12px;">What's the cost compared to traditional treatment?</h4>
+          <p style="font-size:0.95rem; opacity:0.85;">NBOT typically reduces operating costs by 30-50% through lower chemical consumption and reduced maintenance. Request an assessment for detailed ROI analysis.</p>
+        </div>
+
+        <div style="margin-bottom:30px; border-bottom:1px solid rgba(139,95,246,0.2); padding-bottom:20px;">
+          <h4 style="color:var(--teal); margin-bottom:12px;">Is NBOT compatible with existing systems?</h4>
+          <p style="font-size:0.95rem; opacity:0.85;">Yes. NBOT drops into most existing tank systems with minimal civil works. Our engineering team designs the optimal integration approach.</p>
+        </div>
+
+        <div style="margin-bottom:30px;">
+          <h4 style="color:var(--teal); margin-bottom:12px;">How is NBOT monitored after deployment?</h4>
+          <p style="font-size:0.95rem; opacity:0.85;">24/7 cloud-based monitoring with AI-driven predictive maintenance. Real-time dashboards provide performance visibility and automated alerts.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="ex-section" style="text-align:center; background:linear-gradient(rgba(19,26,61,0.82), rgba(19,26,61,0.82));">
+    <div class="container">
+      <h2 style="margin-bottom:20px;">Ready to Transform Your Water Infrastructure?</h2>
+      <p class="section-lead">Start with a comprehensive assessment. Fill out the form above or contact our team directly to discuss your needs.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-section">
+        <h4>Technology</h4>
+        <ul>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="specifications.html">Specifications</a></li>
+          <li><a href="applications.html">Applications</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy-policy.html">Privacy</a></li>
+          <li><a href="terms-of-use.html">Terms</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="case-studies.html">Case Studies</a></li>
+          <li><a href="#">White Papers</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <p style="font-size:0.9rem; color:var(--silver); line-height:1.6;">Water Intelligence is part of Black Silver Technologies—delivering intelligent infrastructure solutions for the modern world.</p>
+        <a href="https://blacksilver.holdings" class="black-silver-link">← Back to Black Silver</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Black Silver Technologies. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="legal.js"></script>
+<script>
+document.getElementById('assessment-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  alert('Assessment request submitted successfully. Our team will contact you within 24 hours.');
+  this.reset();
+});
+</script>
+</body>
+</html>
